@@ -35,14 +35,20 @@ export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
     console.tron.log('payload', payload);
-    yield call(api.post, 'users', {
+    const response = yield call(api.post, 'users', {
       name,
       email,
       password,
       provider: true,
     });
 
-    history.push('/');
+    const { token, user } = response.data;
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
+    yield put(signInSuccess(token, user));
+
+    history.push('/dashboard');
   } catch (err) {
     console.tron.log('sign up failure', err);
     toast.error('Falha no cadastro, verifique seus dados');
