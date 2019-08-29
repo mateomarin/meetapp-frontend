@@ -20,8 +20,9 @@ export default function SignUp() {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.loading);
 
-  function handleSubmit({ email, password }) {
-    dispatch(signUpRequest(email, password));
+  function handleSubmit({ name, email, password }) {
+    console.tron.log('gonna signup with these infos');
+    dispatch(signUpRequest(name, email, password));
   }
 
   return (

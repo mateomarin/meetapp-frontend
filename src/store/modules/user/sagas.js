@@ -2,6 +2,7 @@ import { takeLatest, all, call, put } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
+import {} from '../auth/actions';
 import { updateProfileSuccess, updateProfileFailure } from './actions';
 
 export function* updateProfile({ payload }) {
@@ -16,7 +17,6 @@ export function* updateProfile({ payload }) {
     const response = yield call(api.put, 'users', profile);
 
     toast.success('Perfil atualizado com sucesso');
-    console.tron.log('new user data', response.data);
 
     yield put(updateProfileSuccess(response.data));
   } catch (err) {

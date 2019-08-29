@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import PerfectScrollbar from 'react-perfect-scrollbar';
+import 'react-perfect-scrollbar/dist/css/styles.css';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(PerfectScrollbar)`
   height: 100%;
-  background: linear-gradient(-90deg, #7159c1, #ab59c1);
+  background: linear-gradient(-90deg, #22202c, #402945);
   color: white;
+  overflow: scroll;
 `;

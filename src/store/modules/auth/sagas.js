@@ -12,7 +12,6 @@ export function* signIn({ payload }) {
       email,
       password,
     });
-
     const { token, user } = response.data;
 
     if (!user.provider) {
@@ -26,6 +25,7 @@ export function* signIn({ payload }) {
 
     history.push('/dashboard');
   } catch (err) {
+    console.tron.log('sign up failure', err);
     toast.error('Falha na autenticação, verifique seus dados');
     yield put(signInFailure());
   }
@@ -34,14 +34,17 @@ export function* signIn({ payload }) {
 export function* signUp({ payload }) {
   try {
     const { name, email, password } = payload;
+    console.tron.log('payload', payload);
     yield call(api.post, 'users', {
       name,
       email,
       password,
       provider: true,
     });
+
     history.push('/');
   } catch (err) {
+    console.tron.log('sign up failure', err);
     toast.error('Falha no cadastro, verifique seus dados');
     yield put(signInFailure());
   }
